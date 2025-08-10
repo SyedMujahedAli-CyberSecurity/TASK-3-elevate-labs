@@ -1,0 +1,72 @@
+﻿Task 3 — Basic Vulnerability Scan on Local Machine
+Name: Syed Mujahed Ali
+Internship:  Elevate labs Cybersecurity Internship — Task 3
+Tools: Nessus Essentials
+Target: Windows 11 (192.168.0.102)
+
+
+* Objective: 
+Perform a basic vulnerability assessment of my local Windows 11 machine using Nessus Essentials to identify misconfigurations and common vulnerabilities. Document the most critical findings, their severity, and simple mitigations.
+
+
+* Tools:
+- Nessus Essentials (version: [show version if available])
+- Windows 11 (Host: 192.168.0.102)
+- Browser: Firefox/Chrome for Nessus UI
+- IP discovery: ipconfig (Windows)
+
+
+*  Setup & Scan Configuration
+I installed Nessus Essentials, registered with a free activation key, and created a Basic Network Scan. The scan target was my local IP 192.168.0.102. A default plugin set was used.
+* Vulnerability Review & Severity Analysis
+The Nessus Essentials scan on the local machine (192.168.0.102, Windows 11) identified 26 vulnerabilities.
+Severity Summary
+* Critical: 0
+
+* High: 0
+
+* Medium: 2
+
+* Low: 0
+
+* Info: 24
+
+Medium Severity Vulnerabilities
+1. SMB Signing Not Required
+   * Plugin ID: 57608
+
+   * CVSS v3.0 Base Score: 5.3
+
+   * Description: SMB signing is disabled, allowing potential Man-in-the-Middle (MITM) attacks on SMB traffic.
+
+
+
+      * Mitigation:
+
+         * Enable SMB signing in Windows by going to Local Group Policy Editor → Computer Configuration → Windows Settings → Security Settings → Local Policies → Security Options → Enable Microsoft network server: Digitally sign communications (always).
+2. SSL Certificate Cannot Be Trusted
+         * Plugin ID: 51192
+
+         * CVSS v3.0 Base Score: 6.5
+
+         * Description: The SSL certificate presented is either self-signed, issued by an unknown authority, expired, or mismatched, breaking the chain of trust.
+
+         * Mitigation:
+
+            * Purchase or generate a valid SSL certificate from a trusted Certificate Authority (CA).
+
+            * Install the certificate properly on the server and ensure intermediate CA certificates are included in the chain. 
+
+
+               * Informational Findings & Simple Mitigation
+               1. SSL/TLS Multiple Issues – Update SSL/TLS configuration to only allow strong protocols (e.g., TLS 1.2/1.3) and disable weak ciphers.
+
+               2. HTTP Information Leakage – Disable unnecessary HTTP headers and enable secure headers like Strict-Transport-Security.
+
+               3. Open Ports (SSH, DCE Services, Netstat) – Restrict access to only trusted IP addresses via firewall rules.
+
+               4. Service Detection (Splunk, Windows Services) – Disable unused services to reduce attack surface.
+
+
+
+                  * No Critical Vulnerabilities Found
